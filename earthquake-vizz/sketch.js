@@ -60,9 +60,13 @@ function setup() {
 	var data = earthquakes[i].split(/,/);
 	var lat = data[1];
 	var lon = data[2];
-	var x = mercX(lon) - cx;
-	var y = mercY(lat) - cy;
-	var d = 2; 
+        var mag = data[4];
+        var x = mercX(lon) - cx;
+        var y = mercY(lat) - cy;
+        mag = pow(10, mag);
+        mag = sqrt(mag);
+        var magmax = sqrt(pow(10, 10));
+        var d = map(mag, 0, magmax, 2, 180);
         noStroke();
 	fill(255, 0, 255, 200);
 	ellipse(x, y, d, d);
